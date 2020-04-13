@@ -8,11 +8,21 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 const Wrapper = styled.div`
+    margin-top: 20px;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
 `;
 
 const Number = styled.span`
+    width: 100px;
     font-size: 42px;
+    font-family: 'Sacramento', cursive;
+
+    @media (max-width: 567px) {
+        width: 70px;
+        font-size: 24px;
+    }
 `;
 
 function useInterval(callback, delay) {
@@ -57,8 +67,6 @@ const Counter = ({ toDate }) => {
 
     return (
         <Wrapper>
-            <Number>{ diff.year } lat </Number>
-            <Number>{ diff.month } miesięcy </Number>
             <Number>{ diff.day } dni </Number>
             <Number>{ diff.hour } godzin </Number>
             <Number>{ diff.minute } minut </Number>
