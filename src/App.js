@@ -4,7 +4,9 @@ import dayjs from 'dayjs';
 
 import Counter from './components/counter/Counter';
 import PartyName from './components/PartyName';
+
 import cake from './assets/cake.svg';
+import hearts from './assets/hearts.svg';
 
 const Wrapper = styled.main`
   position: absolute;
@@ -38,6 +40,13 @@ const Text = styled.p`
 const Image = styled.img`
   margin: 20px 0 0;
 
+  &.hearts {
+    position: fixed;
+    top: 40%;
+    left: 40px;
+    transform: translateX(calc(-50% + 50px))
+  }
+
   @media (max-width: 567px) {
     width: 80px;
   }
@@ -55,6 +64,7 @@ function App() {
       <Text>Wszystkiego najlepszego z okazji</Text>
       <PartyName/>
       <Image src={ cake } alt="Tort" />
+      <Image src={ hearts } alt="Serca" className="hearts" />
       <Text>{ process.env.REACT_APP_NEXT_PARTY_TITLE }</Text>
       <Counter toDate={ nextPartyDate } />
     </Wrapper>
