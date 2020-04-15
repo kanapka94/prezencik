@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 
 import Counter from './components/counter/Counter';
 import PartyName from './components/PartyName';
+import HeartTip from './components/HeartTip';
 
 import cake from './assets/cake.svg';
 import hearts from './assets/hearts.svg';
@@ -16,6 +17,17 @@ const Wrapper = styled.main`
   max-width: 567px;
   width: 100%;
   text-align: center;
+`;
+
+const HeartWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-25deg) translate(3px, -52px);
+
+  @media (max-width: 567px) {
+    transform: rotate(-25deg) translate(37px,-32px);
+  }
 `;
 
 const Title = styled.h2`
@@ -55,14 +67,18 @@ const Image = styled.img`
 function App() {
   const nextYear = (new Date()).getFullYear() + 1;
   const nextPartyDate = dayjs(process.env.REACT_APP_PARTY_DATE).year(nextYear);
+  const number = dayjs().diff(dayjs(process.env.REACT_APP_PARTY_DATE), 'year');
 
   return (
     <Wrapper>
+      <HeartWrapper>
+        <HeartTip number={ number }/>
+      </HeartWrapper>
       <Title>
         { process.env.REACT_APP_PERSON_1_NAME } i { process.env.REACT_APP_PERSON_2_NAME }
       </Title>
       <Text>Wszystkiego najlepszego z okazji</Text>
-      <PartyName/>
+      <PartyName number={ number }/>
       <Image src={ cake } alt="Tort" />
       <Image src={ hearts } alt="Serca" className="hearts" />
       <Text>{ process.env.REACT_APP_NEXT_PARTY_TITLE }</Text>

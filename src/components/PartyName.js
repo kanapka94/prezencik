@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
     max-width: 390px;
@@ -23,14 +23,16 @@ const Featured = styled.span`
     }
 `;
 
-const number = dayjs().diff(dayjs(process.env.REACT_APP_PARTY_DATE), 'year');
-
-const PartyName = () => {
+const PartyName = ({ number }) => {
     return (
         <Wrapper>
             Waszej <Featured>{ number }</Featured> { process.env.REACT_APP_PARTY_NAME }
         </Wrapper>
     );
+};
+
+PartyName.propTypes = {
+    number: PropTypes.number
 };
 
 export default PartyName;
